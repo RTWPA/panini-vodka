@@ -49,54 +49,60 @@ color_table create_color_table(image img)
   			new_table->colors[i]->blue = pixel_color[2];
 
   			if(image_pixel_suivant(img) != vrai)
-  				break;
+  				return new_table; 
 
   		}
-
 	}
 
 	return new_table; 
 
 }
 
-boolean destroy_color_table(color_table){
+boolean destroy_color_table(color_table table)
+{
 
-	int i;
+	if (table->owner == true)
+	{
+		free(table);
+		return true;
+	}
 
-	color_table->nb_colors = i;
-
-	if (color_table.owner == true)
-		free(color_table->colors);
-	
-
-	return false
+	return false;
 	
 }
 
-color_table color_table_duplicate(color_table,int offset,int length){
-
-	assert(color_table != NULL);
-	assert(offset < 0 || offset > length);
-	assert(offset + length > length);
-	
-	color_table sou_table;
+color_table color_table_duplicate(color_table table,int offset,int length)
+{
+		
+	color_table new_table;
 	int i;
 
-	sous_table->owner = false;
-	sous_table->nb_colors = length;
-	sous_table-> = malloc(sizeof(color) * sous_table->nb_colors);
+	assert(table != NULL);
+	assert(offset >= 0 && offset < length);
+	assert(offset + length < table->nb_colors);
+
+	new_table->owner = false;
+	new_table->nb_colors = length;
+	new_table->colors = malloc(sizeof(color) * new_table->nb_colors);
 
 	for(i = 0; i < new_table->nb_colors; i++){
 
-		sous_table->colors[i] = color_table->colors[i + offset];
+		new_table->colors[i] = table->colors[i + offset];
 
 	}
 
-	return sous_table;
+	return new_table;
 
 }
 
-void color_table_get_color(color_table,int,color*){
+void color_table_get_color(color_table table, int color_id, color color_struc)
+{
 
+	assert(table != NULL);
+	assert(color_id >= 0 && color_id < table->nb_colors);
+	
+	color_struc->red = table->colors[color_id]->red;	
+	color_struc->green = table->colors[color_id]->green;	
+	color_struc->blue = table->colors[color_id]->blue;
 	
 }
