@@ -58,3 +58,45 @@ color_table create_color_table(image img)
 	return new_table; 
 
 }
+
+boolean destroy_color_table(color_table){
+
+	int i;
+
+	color_table->nb_colors = i;
+
+	if (color_table.owner == true)
+		free(color_table->colors);
+	
+
+	return false
+	
+}
+
+color_table color_table_duplicate(color_table,int offset,int length){
+
+	assert(color_table != NULL);
+	assert(offset < 0 || offset > length);
+	assert(offset + length > length);
+	
+	color_table sou_table;
+	int i;
+
+	sous_table->owner = false;
+	sous_table->nb_colors = length;
+	sous_table-> = malloc(sizeof(color) * sous_table->nb_colors);
+
+	for(i = 0; i < new_table->nb_colors; i++){
+
+		sous_table->colors[i] = color_table->colors[i + offset];
+
+	}
+
+	return sous_table;
+
+}
+
+void color_table_get_color(color_table,int,color*){
+
+	
+}
