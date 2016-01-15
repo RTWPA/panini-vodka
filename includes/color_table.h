@@ -6,6 +6,14 @@ typedef struct color *color;
 typedef enum {false,true} boolean;
 typedef struct color_table *color_table;
 
+struct color
+{
+
+	int red;
+	int green;
+	int blue;
+
+};
 
 color_table   create_color_table(image);
 boolean       destroy_color_table(color_table);
