@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 
 #include "includes/image.h"
 #include "includes/color_table.h"
@@ -42,18 +43,18 @@ int main(int argc, char *argv[])
 		color_table_get_color(table_convert, 0, table_current_color);
 		
 		bestID = 0;
-		bestValue = (pixel_color[0] - table_current_color->red) * (pixel_color[0] - table_current_color->red);
-		bestValue += (pixel_color[1] - table_current_color->green) * (pixel_color[1] - table_current_color->green);
-		bestValue += (pixel_color[2] - table_current_color->blue) * (pixel_color[2] - table_current_color->blue);
+		bestValue = abs((pixel_color[0] - table_current_color->red));
+		bestValue += abs((pixel_color[1] - table_current_color->green));
+		bestValue += abs((pixel_color[2] - table_current_color->blue));
 		
 		for(i = 1; i < color_table_get_nb_color(table_convert); i++)
 		{
 			
 			color_table_get_color(table_convert, i, table_current_color);
 			
-			currentValue = (pixel_color[0] - table_current_color->red) * (pixel_color[0] - table_current_color->red);
-			currentValue += (pixel_color[1] - table_current_color->green) * (pixel_color[1] - table_current_color->green);
-			currentValue += (pixel_color[2] - table_current_color->blue) * (pixel_color[2] - table_current_color->blue);
+			currentValue = abs((pixel_color[0] - table_current_color->red));
+			currentValue += abs((pixel_color[1] - table_current_color->green));
+			currentValue += abs((pixel_color[2] - table_current_color->blue));
 			
 			if(currentValue < bestValue)
 			{

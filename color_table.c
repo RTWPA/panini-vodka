@@ -25,7 +25,7 @@ color_table create_color_table(image img)
 	new_table->owner = true;
 
 
-	new_table->nb_colors = image_give_largeur(img) / 3;
+	new_table->nb_colors = image_give_largeur(img);
 
 	new_table->colors = malloc(sizeof(color) * new_table->nb_colors);
 
